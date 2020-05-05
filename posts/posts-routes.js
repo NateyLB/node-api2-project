@@ -38,7 +38,6 @@ router.get('/:id', (req, res) => {
     const id = req.params.id;
     db.find()
         .then(posts => {
-           // const post = posts.find(element => element.id = id)
             if (posts.find(element => element.id == id)) {
                 db.findById(id)
                     .then(post => {
