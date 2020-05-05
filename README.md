@@ -99,10 +99,10 @@ When the client makes a `POST` request to `/api/posts`:
   - return HTTP status code `201` (Created).
   - return the newly created _post_. -->
 
-- If there's an error while saving the _post_:
+<!-- - If there's an error while saving the _post_:
   - cancel the request.
   - respond with HTTP status code `500` (Server Error).
-  - return the following JSON object: `{ error: "There was an error while saving the post to the database" }`.
+  - return the following JSON object: `{ error: "There was an error while saving the post to the database" }`. -->
 
 When the client makes a `POST` request to `/api/posts/:id/comments`:
 
@@ -137,15 +137,15 @@ When the client makes a `POST` request to `/api/posts/:id/comments`:
 
 When the client makes a `GET` request to `/api/posts/:id`:
 
-- If the _post_ with the specified `id` is not found:
+<!-- - If the _post_ with the specified `id` is not found:
 
   - return HTTP status code `404` (Not Found).
-  - return the following JSON object: `{ message: "The post with the specified ID does not exist." }`.
+  - return the following JSON object: `{ message: "The post with the specified ID does not exist." }`. -->
 
-- If there's an error in retrieving the _post_ from the database:
+<!-- - If there's an error in retrieving the _post_ from the database:
   - cancel the request.
   - respond with HTTP status code `500`.
-  - return the following JSON object: `{ error: "The post information could not be retrieved." }`.
+  - return the following JSON object: `{ error: "The post information could not be retrieved." }`. -->
 
 When the client makes a `GET` request to `/api/posts/:id/comments`:
 

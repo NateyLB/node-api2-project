@@ -4,6 +4,8 @@ const apiRoutes = require('./api-routes.js');
 
 const server = express();
 
+server.use(express.json())
+
 server.use('/api', apiRoutes);
 
 server.listen(5000, () =>
