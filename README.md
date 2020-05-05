@@ -149,10 +149,10 @@ When the client makes a `GET` request to `/api/posts/:id`:
 
 When the client makes a `GET` request to `/api/posts/:id/comments`:
 
-- If the _post_ with the specified `id` is not found:
+<!-- - If the _post_ with the specified `id` is not found:
 
   - return HTTP status code `404` (Not Found).
-  - return the following JSON object: `{ message: "The post with the specified ID does not exist." }`.
+  - return the following JSON object: `{ message: "The post with the specified ID does not exist." }`. -->
 
 - If there's an error in retrieving the _comments_ from the database:
   - cancel the request.
@@ -190,11 +190,11 @@ When the client makes a `PUT` request to `/api/posts/:id`:
   - respond with HTTP status code `500`.
   - return the following JSON object: `{ error: "The post information could not be modified." }`. -->
 
-- If the post is found and the new information is valid:
+<!-- - If the post is found and the new information is valid:
 
   - update the post document in the database using the new information sent in the `request body`.
   - return HTTP status code `200` (OK).
-  - return the newly updated _post_.
+  - return the newly updated _post_. -->
 
 ## Stretch Problems
 

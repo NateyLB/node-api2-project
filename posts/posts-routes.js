@@ -1,10 +1,8 @@
 
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const db = require('../data/db');
 
-const commentRoutes = require('../comments/comments-routes.js');
-
+//posts
 router.get('/', (req, res) => {
     db.find()
         .then(posts => {
@@ -67,11 +65,12 @@ router.delete('/:id', (req, res)=>{
         if (posts.find(element => element.id == id)) {
             db.remove(id)
                 .then(response => {
-                    res.status(200).json({ posts_deleted: response})
-                })
-                .catch(err => {
-                    console.log(err);
-                    res.status(500).json({ error: "The post could not be removed" })
+                    if(response == 1){
+                        res.status(200).json({ posts_deleted: response})
+                    }
+                    else{
+                        res.status(500).json({ error: "The post could not be removed" })
+                    }
                 })
         }
         else {
@@ -117,11 +116,41 @@ router.put('/:id', (req, res)=>{
     })
 })
 
+//comments
 
+router.get('/:id/comments', (req, res)=>{
+    const id = req.params.id;
+    db.find()
+    .then(posts => {
+        if (posts.find(element => element.id == id)) {
+            db.findPostComments(id)
+            .then(comments =>{
+                if(comments.length > 0){
+                    res.status(200).json(comments)
+                }
+                else{
+                    res.status(500).json({ error: "The comments information could not be retrieved." })
+                }
+            })
+        }
+        else {
+            res.status(404).json({ message: "The post with the specified ID does not exist." });
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: "The posts information could not be retrieved." });
 
-
-
-
+    })
 })
+    
+})
+
+
+
+
+
+
+
 
 module.exports = router;
