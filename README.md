@@ -117,16 +117,16 @@ When the client makes a `POST` request to `/api/posts/:id/comments`:
   - respond with HTTP status code `400` (Bad Request).
   - return the following JSON response: `{ errorMessage: "Please provide text for the comment." }`. -->
 
-- If the information about the _comment_ is valid:
+<!-- - If the information about the _comment_ is valid:
 
   - save the new _comment_ the the database.
   - return HTTP status code `201` (Created).
-  - return the newly created _comment_.
+  - return the newly created _comment_. -->
 
-- If there's an error while saving the _comment_:
+<!-- - If there's an error while saving the _comment_:
   - cancel the request.
   - respond with HTTP status code `500` (Server Error).
-  - return the following JSON object: `{ error: "There was an error while saving the comment to the database" }`.
+  - return the following JSON object: `{ error: "There was an error while saving the comment to the database" }`. -->
 
 <!-- When the client makes a `GET` request to `/api/posts`:
 
