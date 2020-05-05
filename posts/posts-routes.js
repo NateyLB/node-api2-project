@@ -3,6 +3,7 @@ const router = require('express').Router();
 const db = require('../data/db');
 
 //posts
+//get posts
 router.get('/', (req, res) => {
     db.find()
         .then(posts => {
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
             res.status(500).json({ error: "The posts information could not be retrieved." });
         })
 });
-
+//add post
 router.post('/', (req, res) => {
     if (req.body.title && req.body.contents) {
         db.insert(req.body)
@@ -32,7 +33,7 @@ router.post('/', (req, res) => {
         res.status(400).json({ errorMessage: "Please provide title and contents for the post." });
     }
 });
-
+//get post by ID
 router.get('/:id', (req, res) => {
     const id = req.params.id;
     db.find()
@@ -58,6 +59,7 @@ router.get('/:id', (req, res) => {
 
         })
     });
+//delete post by ID
 router.delete('/:id', (req, res)=>{
     const id = req.params.id;
     db.find()
@@ -83,7 +85,7 @@ router.delete('/:id', (req, res)=>{
 
     })
 });
-
+//edit post by ID
 router.put('/:id', (req, res)=>{
     const id = req.params.id;
     db.find()
@@ -117,7 +119,7 @@ router.put('/:id', (req, res)=>{
 });
 
 //comments
-
+//get comments by post ID
 router.get('/:id/comments', (req, res)=>{
     const id = req.params.id;
     db.find()
@@ -143,7 +145,7 @@ router.get('/:id/comments', (req, res)=>{
 
     })
 })
-
+//add commenst to post by post ID
 router.post('/:id/comments', (req, res)=>{
     const id = req.params.id;
     db.find()
