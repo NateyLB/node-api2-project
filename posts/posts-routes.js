@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
     else {
         res.status(400).json({ errorMessage: "Please provide title and contents for the post." });
     }
-})
+});
 
 router.get('/:id', (req, res) => {
     const id = req.params.id;
@@ -57,7 +57,7 @@ router.get('/:id', (req, res) => {
             res.status(500).json({ error: "The posts information could not be retrieved." });
 
         })
-
+    });
 router.delete('/:id', (req, res)=>{
     const id = req.params.id;
     db.find()
@@ -82,7 +82,7 @@ router.delete('/:id', (req, res)=>{
         res.status(500).json({ error: "The posts information could not be retrieved." });
 
     })
-})
+});
 
 router.put('/:id', (req, res)=>{
     const id = req.params.id;
@@ -114,7 +114,7 @@ router.put('/:id', (req, res)=>{
         res.status(500).json({ error: "The posts information could not be retrieved." });
 
     })
-})
+});
 
 //comments
 
@@ -143,8 +143,41 @@ router.get('/:id/comments', (req, res)=>{
 
     })
 })
-    
+
+router.post('/:id/comments', (req, res)=>{
+    const id = req.params.id;
+    db.find()
+    .then(posts => {
+        if (posts.find(element => element.id == id)) {
+          if(req.body.text){
+            db.insertComment({text: req.body.text, post_id: id})
+            .then(response => {
+                res.status(201).json({text: req.body.text, post_id: response.id})
+            })
+            .catch(err =>{
+                console.log(err);
+                res.status(500).json({ error: "There was an error while saving the comment to the database" })
+            })
+          }
+          else{
+              res.status(400).json({ errorMessage: "Please provide text for the comment." })
+          }
+        }
+        else {
+            res.status(404).json({ message: "The post with the specified ID does not exist." });
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: "The posts information could not be retrieved." });
+
+    })
 })
+
+
+    
+
+
 
 
 
