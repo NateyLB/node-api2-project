@@ -5,10 +5,15 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "server": "nodemon index.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-router": "0.0.1",
     "knex": "^0.20.11",
+    "moments": "0.0.2",
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
